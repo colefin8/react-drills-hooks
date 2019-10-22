@@ -1,21 +1,31 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useState, useEffect } from "react";
+import Todo from "./Todo";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const App = () => {
+  const [list, changeList] = useState([]);
+  const [input, changeInput] = useState("");
+
+  const removeItem = index => {
+    list.splice(index, 1);
+  };
+  console.log(input);
+  console.log(list);
+  return (
+    <div>
+      <input onChange={e => changeInput(e.target.value)} value={input} />
+      <button
+        onClick={() => {
+          changeList([...list, input]);
+          changeInput("");
+        }}
+      >
+        Add item
+      </button>
+      {list.map((e, i) => {
+        return <Todo item={e} index={i} removeItem={removeItem} />;
+      })}
+    </div>
+  );
+};
 
 export default App;

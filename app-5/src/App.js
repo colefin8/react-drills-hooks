@@ -1,21 +1,15 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useState } from "react";
+import Image from "./Components/Image";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const App = () => {
+  const [src, srcChange] = useState(
+    "https://image.insider.com/5c59e77ceb3ce80d46564023?width=1100&format=jpeg&auto=webp"
+  );
+  return (
+    <div>
+      <Image src={src} />
+    </div>
+  );
+};
 
 export default App;
